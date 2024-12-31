@@ -1,0 +1,56 @@
+/* Dashboard.css */
+.dashboard-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: #f7f7f7; /* Light dark shade of white */
+  padding: 20px;
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  padding: 40px;
+  margin: 70px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card-container {
+  flex: 1;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling for cards with black gradient on images */
+.card-image {
+  position: relative;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.card-image .gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  border-radius: 16px;
+}
+
+/* Optional: Add a blur effect on the background to make cards stand out more */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}

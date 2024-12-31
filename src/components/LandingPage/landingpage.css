@@ -1,50 +1,38 @@
-/* Reset default styling */
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  scroll-behavior: smooth;
-  background: linear-gradient(135deg, #9d50bb, #6e48aa); /* Vibrant purple to deep purple gradient */
-  color: white;
- 
-  height: 100%; 
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Prevent floating elements from exceeding bounds */
-}
-
-/* Geometric texture overlay */
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Replace with any pattern */
-  opacity: 0.2; /* Subtle texture */
-  z-index: 0;
-}
-
 /* Landing page layout */
 .landing-container {
   display: flex;
   justify-content: space-between; /* Space between header content and login container */
   align-items: center;
-  width: 100%;
-  max-width: 1200px;
+  width: 100%; /* Ensure full width of the viewport */
+  height: 100vh; /* Ensure full height of the viewport */
+  background: linear-gradient(135deg, #9d50bb, #6e48aa, #6c2c91); /* Smooth gradient */
+  background-size: 400% 400%;
+  animation: gradientBackground 6s ease infinite; /* Smooth gradient animation */
+  max-width: 100%; /* Ensure no maximum width limits */
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  gap: 50px; /* Add horizontal space between children */
+  gap: 25px; /* Add horizontal space between children */
+}
+
+/* Gradient animation */
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Left-side content */
 .header-content {
   flex: 1;
-  text-align: left;
-  padding-right: 20px;
+  text-align: center;
+  padding-left: 100px;
 }
 
 /* Right-side container for the login or sign-up form */
@@ -55,20 +43,20 @@ body::before {
   align-items: center;
 }
 
-
-
-
 /* Header text */
 h1 {
   font-size: 4rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Kalam', cursive;
   margin: 0;
+  color: white;
 }
 
 p {
   font-size: 1.5rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Kalam', cursive;
   margin: 10px 0;
+  color: white;
+  font-weight: 300; /* Lighter weight for description */
 }
 
 /* Buttons */
