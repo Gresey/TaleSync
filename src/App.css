@@ -1,0 +1,95 @@
+/* App.css */
+.talesync-landing {
+  background: linear-gradient(180deg, #6772e5 0%, #7580f0 100%);
+  color: white;
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; /* Add some padding around the content */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.talesync-header {
+  text-align: center;
+  margin-bottom: 40px; /* Add space below the header */
+  max-width: 800px;
+}
+
+.talesync-logo-large {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.talesync-subtitle {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.login-button, .signup-button {
+  background-color: white;
+  color: #5e72e4;
+  border: none;
+  padding: 12px 24px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.login-button:hover, .signup-button:hover {
+  background-color: #f0f0f0; /* Slightly darker background on hover */
+}
+
+.features-section {
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.features-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  grid-gap: 20px;
+}
+
+.feature-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+  backdrop-filter: blur(5px);
+}
+
+.feature-card h3 {
+  margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .talesync-header {
+        max-width: 90%;
+    }
+    .auth-buttons {
+        flex-direction: column;
+    }
+    .login-button, .signup-button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
