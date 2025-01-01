@@ -1,0 +1,145 @@
+.journal-container {
+    padding: 20px;
+  }
+  
+  .journal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-button {
+    background: linear-gradient(90deg, #b150bc, #9427d8);
+    border: none;
+    box-shadow: #ddd;
+    color: white;
+    font-size: 20px;
+    padding: 5px 15px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .journal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .journal-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    color: black;
+   
+  }
+ 
+ /* General Layout */
+.add-journal-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  background: linear-gradient(90deg, #f5efff, #e8dbff);
+  font-family: 'Kalam', cursive;
+  color: #9427d8;
+}
+
+/* Header Controls */
+.header-controls {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 30px; /* Adjusted to position the Save button */
+  margin-top: 50px; /* Added margin to ensure button does not overlap */
+  z-index: 5; /* Ensure Save button is above other elements */
+}
+
+/* Form Layout */
+.form-container {
+  display: grid;
+  grid-template-areas:
+    "date title"
+    "name name";
+  grid-gap: 20px;
+  margin: 20px 0;
+  width: 80%;
+}
+
+.date-picker {
+  grid-area: date;
+  text-align: left;
+  margin-top: -20px; /* Moved date picker slightly upwards */
+}
+
+.title-field {
+  grid-area: title;
+  color: #9427d8;
+}
+
+.author-field {
+  grid-area: name;
+}
+
+
+/* Input Styles */
+.transparent-input {
+  background: transparent !important;
+  border: none !important;
+  color: #9427d8;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  outline: none;
+  border-bottom: 2px solid #ddd; /* Default border color */
+  font-family: 'Kalam', cursive;
+  transition: border-color 0.3s ease; /* Smooth transition effect */
+}
+
+.transparent-input::placeholder {
+  color: #9427d8;
+  opacity: 0.8;
+}
+
+/* Hover Effect */
+.transparent-input:hover {
+  color: #9427d8;
+  border-bottom: 2px solid #9427d8; /* Change border color on hover */
+}
+
+
+/* Editor Card */
+.editor-card {
+  width: 80%;
+  margin-top: 10px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(147, 112, 219, 0.5);
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+  .form-container {
+    grid-template-areas:
+      "date"
+      "title"
+      "name";
+    width: 100%;
+  }
+
+  .editor-card {
+    width: 100%;
+  }
+}
