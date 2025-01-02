@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Editor } from '@tinymce/tinymce-react';
 import DatePicker from 'react-datepicker';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import 'react-datepicker/dist/react-datepicker.css';
 import './journal.css';
+import Sidebar from '../Dashboard/sidebar';
 
 const AddJournal = ({ onSave }) => {
   const [newJournal, setNewJournal] = useState({
@@ -14,6 +16,8 @@ const AddJournal = ({ onSave }) => {
   });
 
   const [backgroundColor, setBackgroundColor] = useState("#ffffff"); // Default background color
+
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -36,14 +40,19 @@ const AddJournal = ({ onSave }) => {
       className="add-journal-fullscreen"
       style={{ backgroundColor }}
     >
-      <div className="header-controls">
-        {/* <Form.Control
-          type="color"
-          value={backgroundColor}
-          onChange={(e) => setBackgroundColor(e.target.value)}
-          style={{ width: '50px', height: '30px', marginRight: '15px' }}
-          aria-label="Change background color"
-        /> */}
+      <Sidebar/>
+      <div className="header-controls"  style={{ marginTop:'0px'}}>
+        <Button
+          onClick={() => navigate('/dashboard')} // Navigate back to the previous page
+          style={{
+            background: 'transparent',
+            border: '1px solid #9427d8',
+            color: '#9427d8',
+            marginRight: '10px',
+          }}
+        >
+          Back
+        </Button>
         <Button
           onClick={handleFormSubmit}
           style={{
@@ -64,17 +73,14 @@ const AddJournal = ({ onSave }) => {
             className="transparent-input"
           />
         </div>
-        
-        
         <div className="form-item author-field">
-        <Form.Control
+          <Form.Control
             type="text"
             placeholder="Enter the title of your journal"
             value={newJournal.title}
             onChange={(e) => setNewJournal({ ...newJournal, title: e.target.value })}
             className="transparent-input"
           />
-          
         </div>
       </div>
       <div className="editor-card">

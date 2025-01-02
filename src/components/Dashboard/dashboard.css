@@ -7,10 +7,11 @@
   padding: 20px;
 }
 
+
 .dashboard-content {
   flex-grow: 1;
   padding: 40px;
-  margin: 70px;
+  margin: 60px;
   display: flex;
   justify-content: space-between;
   gap: 30px;
@@ -23,6 +24,7 @@
   flex: 1;
   margin-top: 20px;
   display: flex;
+  gap: 20px;
   justify-content: center;
   align-items: center;
 }

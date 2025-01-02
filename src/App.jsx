@@ -2,9 +2,11 @@ import { useState } from 'react'
 import './App.css'
 import LandingPage from './components/LandingPage/landingpage'
 import LoginPage from './components/Login/login';
-import { Route,Router,Routes } from "react-router-dom";
-
+import { Route,Routes } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from './components/Dashboard/dashboard';
+import Gallery from './components/Gallery/gallery';
+import AddJournal from './components/Journal/newjournalpage';
 
 function App() {
   
@@ -14,8 +16,10 @@ function App() {
       <div>
         <Routes>
           <Route path='/login' element={<LoginPage/>}/>
-          <Route path='/landing' element={<LandingPage/>}/>
+          <Route path='/' element={<LandingPage/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/dashboard/journal' element={<AddJournal/>}/> 
+          <Route path='/gallery' element={<Gallery/>}/>
         </Routes>
       
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
-import AddJournal from './newjournalpage';
+import { useNavigate } from 'react-router-dom';
 import './journal.css';
 
 const Journal = () => {
@@ -9,54 +9,69 @@ const Journal = () => {
       title: "My First Journal",
       content: "Today was an amazing day! I explored the park and enjoyed the fresh air.",
       author: "Alice Johnson",
+      date: "24 December 2024", // Added date
     },
     {
       title: "Work Updates",
       content: "Completed the first phase of the project. Team collaboration was excellent.",
       author: "Bob Smith",
+      date: "12 December 2024", // Added date
     },
     {
       title: "Travel Diary",
       content: "Visited the mountains, and the view was breathtaking. Can't wait to go back!",
       author: "Clara Davis",
+      date: "5 November 2024", // Added date
     },
+    {
+      title: "My First Journal",
+      content: "Today was an amazing day! I explored the park and enjoyed the fresh air.",
+      author: "Alice Johnson",
+      date: "24 December 2024", // Added date
+    },
+    {
+      title: "Work Updates",
+      content: "Completed the first phase of the project. Team collaboration was excellent.",
+      author: "Bob Smith",
+      date: "12 December 2024", // Added date
+    },
+    {
+      title: "Travel Diary",
+      content: "Visited the mountains, and the view was breathtaking. Can't wait to go back!",
+      author: "Clara Davis",
+      date: "5 November 2024", // Added date
+    },
+    
   ]);
 
-  const [showForm, setShowForm] = useState(false);
-
-  const handleSaveJournal = (newJournal) => {
-    setSavedJournals([...savedJournals, newJournal]);
-    setShowForm(false);
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="journal-container">
-     
-
-      {showForm==false? <>
-        <div className="journal-header">
-        <h2>Journals</h2>
+      <div className="journal-header">
+        <h2 style={{fontFamily:'Kalam,cursive',color:'#9427d8',marginTop:'0px'}}>Journals</h2>
         <Button
           className="add-button"
-          onClick={() => setShowForm(!showForm)}
+          onClick={() => navigate('/dashboard/journal')}
         >
-          + 
+          +
         </Button>
-      </div><div className="journal-grid">
-        {savedJournals.map((journal, index) => (
-          <Card key={index} className="journal-card">
-            <Card.Header>
-              <Card.Title>{journal.title}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">By {journal.author}</Card.Subtitle>
-            </Card.Header>
-            <Card.Body>
-              <Card.Text>{journal.content.slice(0, 100)}...</Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
-      </div></> :<AddJournal onSave={handleSaveJournal} />}
+      </div>
+      <div className="journal-cards-container">
+  {savedJournals.map((journal, index) => (
+    <Card key={index} className="journal-card">
+      <Card.Body>
+        <Card.Title >{journal.title}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          By {journal.author}
+        </Card.Subtitle>
+        <Card.Text className="journal-date">{journal.date}</Card.Text> {/* Added Date */}
+        <Card.Text>{journal.content.slice(0, 20)}...</Card.Text>
+      </Card.Body>
+    </Card>
+  ))}
+</div>
 
-      
     </div>
   );
 };

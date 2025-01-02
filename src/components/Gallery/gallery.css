@@ -1,0 +1,79 @@
+/* Filepath: /d:/Projects/Talesync_web/talesync/src/components/Gallery/gallery.css */
+.gallery-page {
+  display: flex;
+  background: linear-gradient(120deg, #ede9ed, #e9e0ed); 
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.gallery-heading {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #9934b8; /* Purple color for the heading */
+}
+
+.gallery-card {
+ /* Gradient background */
+ background: #f8f2f2; 
+  border-radius: 15px;
+  padding: 35px;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  box-shadow: 0 7px 15px rgba(97, 15, 163, 0.2);
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 1000px;
+   /* Center the gallery */
+}
+
+.gallery-img-item {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+}
+
+.gallery-img-item:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* gallery.css */
+.lg-container {
+  height: 50px;
+}
+
+.lg-backdrop {
+  z-index: 1040 !important; /* Ensure the backdrop is just below the gallery */
+}
+
+
+
+/* Button Styles */
+.btn-dashboard, .btn-upload {
+  background-color: #9760b9; /* Purple background */
+  color: white;
+  font-weight: 100;
+  font-size: 13px;
+  padding: 10px 13px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-dashboard:hover, .btn-upload:hover {
+  background-color: #b35bbd; /* Darker purple on hover */
+}

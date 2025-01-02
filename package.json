@@ -18,7 +18,12 @@
     "@mui/joy": "^5.0.0-beta.51",
     "@mui/material": "^6.3.0",
     "@mui/styled-engine-sc": "^6.3.0",
+    "@tinymce/tinymce-react": "^5.1.1",
+    "bootstrap": "^5.3.3",
+    "lightgallery": "^2.8.2",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.7",
+    "react-datepicker": "^7.5.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
     "styled-components": "^6.1.13"

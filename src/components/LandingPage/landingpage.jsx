@@ -18,7 +18,8 @@ const LandingPage = () => {
     <div className="landing-container">
       {/* Left side content */}
       <div className="header-content">
-        <h1>TaleSync</h1>
+      <h1 style={{ color: 'white' }}>TaleSync</h1>
+
         <p>A real-time collaborative journaling platform.</p>
         <div className="buttons">
           <button onClick={handleLoginClick}>Login</button>
