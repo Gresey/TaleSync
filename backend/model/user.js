@@ -15,10 +15,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-  },
-  roomId: {
-    type: String,
-  },
+  }
+
 });
 
 // Hash password before saving
