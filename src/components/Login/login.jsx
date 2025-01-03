@@ -12,8 +12,8 @@ const LoginForm = () => {
       <h2>Login</h2>
       <form>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" placeholder="Enter your username" />
+          <label htmlFor="username">Email</label>
+          <input type="text" id="email" placeholder="Enter your Email" />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>

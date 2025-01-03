@@ -11,6 +11,10 @@ const SignUpForm = () => {
           <input type="text" id="username" placeholder="Enter your username" />
         </div>
         <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input type="text" id="email" placeholder="Enter your Email" />
+        </div>
+        <div className="form-group">
           <label htmlFor="password">Password</label>
           <input type="password" id="password" placeholder="Enter your password" />
         </div>
