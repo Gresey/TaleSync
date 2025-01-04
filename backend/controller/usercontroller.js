@@ -1,9 +1,9 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import User from '../model/user.js';
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const User = require('../model/user.js');
 
 
-const SignUpuser=async(req,res)=>{
+exports.SignUpuser=async(req,res)=>{
      const { username, email, password } = req.body;
     
         try {
@@ -21,26 +21,39 @@ const SignUpuser=async(req,res)=>{
         }
 
 }
-const Loginuser=async(req,res)=>{
-    const { email, password } = req.body;
+exports.Loginuser=async(req,res)=>{
+   
+      const { email, password, roomId } = req.body;
     
-        try {
-            const user = await User.findOne({ email });
-            if (!user) {
-                return res.status(400).json({ message: 'Invalid email or password' });
-            }
+      if (!roomId) {
+        return res.status(400).json({ message: "Room ID is required" });
+      }
     
-            const isMatch = await bcrypt.compare(password, user.password);
-            if (!isMatch) {
-                return res.status(400).json({ message: 'Invalid email or password' });
-            }
-    
-            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    
-            res.status(200).json({ token, message: 'Login successful' });
-        } catch (err) {
-            res.status(500).json({ message: 'Error logging in', error: err });
+      try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
         }
-}
-
-export {SignUpuser,Loginuser}
+    
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+          return res.status(401).json({ message: "Invalid credentials" });
+        }
+    
+        const token = jwt.sign(
+          { id: user._id, username: user.username, roomId },
+          process.env.JWT_SECRET,
+          { expiresIn: "1h" }
+        );
+    
+        res.status(200).json({
+          message: "Login successful",
+          token,
+          username: user.username,
+          roomId,
+        });
+      } catch (err) {
+        res.status(500).json({ message: "Login failed", error: err });
+      }
+    };
+    

@@ -15,8 +15,10 @@ import lgAutoplay from 'lightgallery/plugins/autoplay';
 import lgFullscreen from 'lightgallery/plugins/fullscreen';
 import lgShare from 'lightgallery/plugins/share';
 import lgRotate from 'lightgallery/plugins/rotate';
+import { useSession } from "../../context/SessionContext";
 
 import './gallery.css';
+import { jwtDecode } from "jwt-decode";
 import Sidebar from '../Dashboard/sidebar';
 
 const initialImages = [
@@ -30,14 +32,17 @@ const initialImages = [
 
 const Gallery = () => {
   const [images, setImages] = useState(initialImages);
-  const navigate = useNavigate(); // Hook for navigation
-
+  const navigate = useNavigate(); 
+  const { token } = useSession();
+  const decodedToken = jwtDecode(token);
+  const {username,roomId} = decodedToken;
+  
   const onInit = () => {
     console.log('LightGallery has been initialized');
   };
 
   const navigateToDashboard = () => {
-    navigate('/dashboard'); // Change this route as needed
+    navigate(`/dashboard/${roomId}`); 
   };
 
   const handleFileChange = (event) => {

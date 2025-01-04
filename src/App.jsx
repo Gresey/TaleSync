@@ -1,25 +1,37 @@
 import { useState } from 'react'
 import './App.css'
 import LandingPage from './components/LandingPage/landingpage'
-import LoginPage from './components/Login/login';
 import { Route,Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from './components/Dashboard/dashboard';
-import Gallery from './components/Gallery/gallery';
 import AddJournal from './components/Journal/newjournalpage';
+import ProtectedRoute from './ProtectedRoute';
+import Gallery from './components/Gallery/gallery';
 
 function App() {
-  
+
 
   return (
     <>
       <div>
         <Routes>
-          <Route path='/login' element={<LoginPage/>}/>
           <Route path='/' element={<LandingPage/>}/>
-          <Route path='/dashboard/:code' element={<Dashboard/>}/>
-          <Route path='/dashboard/journal' element={<AddJournal/>}/> 
-          <Route path='/gallery' element={<Gallery/>}/>
+          <Route path='/dashboard/:code' element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }/>
+          <Route path='/dashboard/journal' element={
+            <ProtectedRoute>
+              <AddJournal/>
+              </ProtectedRoute>
+            }/> 
+          <Route path='/gallery' element={
+            <ProtectedRoute>
+              <Gallery/>
+              </ProtectedRoute>}
+              /> 
+          
         </Routes>
       
       </div>

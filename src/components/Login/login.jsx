@@ -7,21 +7,21 @@ import { useSession } from "../../context/SessionContext";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [code, setCode] = useState("");
+  const [roomId, setRoomId] = useState("");
   const navigate = useNavigate();
   const { setToken } = useSession();
   const login = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch("http://localhost:5000/user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password}),
+        body: JSON.stringify({ email, password,roomId}),
       });
 
       const data = await response.json();
       if (response.ok) {
-        alert(data.message);
+        //alert(data.message);
         try {
           setToken(data.token); 
         } catch (error) {
@@ -29,7 +29,7 @@ const LoginForm = () => {
           alert("Error setting token in context");
         }
 
-        navigate(`/dashboard/${code}`);
+        navigate(`/dashboard/${roomId}`);
       } else {
         alert(data.message);
       }
@@ -39,10 +39,10 @@ const LoginForm = () => {
     }
   };
 
-  const generateCode = () => {
+  const generateroomId = () => {
   
-    const uniqueCode = uuidv4();
-    setCode(uniqueCode); 
+    const uniqueroomId = uuidv4();
+    setRoomId(uniqueroomId); 
   };
 
   return (
@@ -70,17 +70,17 @@ const LoginForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="code">Code</label>
+          <label htmlFor="roomId">Code</label>
           <input
             type="text"
-            id="code"
-            placeholder="Generated unique code"
-            value={code} // Bind input value to the state
-            onChange={(e) => setCode(e.target.value)}
+            id="roomId"
+            placeholder="Generated unique roomId"
+            value={roomId} // Bind input value to the state
+            onChange={(e) => setRoomId(e.target.value)}
           />
         </div>
         <div>
-          <button type="button" onClick={generateCode}>
+          <button type="button" onClick={generateroomId}>
             Generate Code
           </button>
           <span> </span>

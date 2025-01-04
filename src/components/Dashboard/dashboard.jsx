@@ -7,6 +7,7 @@ import GradientCard from './card';
 import Journal from '../Journal/journal';
 import { useNavigate } from 'react-router-dom';
 
+
 export default function Dashboard() {
   const [viewJournal, setViewJournal] = useState(false);
   const [viewSidebar, setViewSidebar] = useState(true);

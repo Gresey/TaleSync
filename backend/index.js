@@ -2,9 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const connectDB = require('./mongodb_connect.js');
-const User = require('./model/user.js');
-const { Loginuser, SignUpuser } = require('./controller/usercontroller.js');
-
+const userRoutes=require('./routes/userroutes.js');
+const journalRoutes=require('./routes/journalroutes.js');
 require('dotenv').config();
 
 const app = express();
@@ -14,14 +13,12 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Connect to Database
 connectDB();
 
 
-app.post('/signup', SignUpuser);
+app.use('/user',userRoutes);
 
-// Login
-app.post('/login', Loginuser);
+app.use('/journal',journalRoutes);
 
 
 app.listen(PORT, () => {

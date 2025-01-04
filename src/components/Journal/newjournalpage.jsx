@@ -2,33 +2,65 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Editor } from '@tinymce/tinymce-react';
 import DatePicker from 'react-datepicker';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 import './journal.css';
 import Sidebar from '../Dashboard/sidebar';
+import { jwtDecode } from "jwt-decode";
+import { useSession } from '../../context/SessionContext'; // Import context for authentication
 
-const AddJournal = ({ onSave }) => {
+
+const AddJournal = () => {
   const [newJournal, setNewJournal] = useState({
     title: "",
     content: "",
-    author: "",
     date: new Date(),
   });
 
-  const [backgroundColor, setBackgroundColor] = useState("#ffffff"); // Default background color
+  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
+  const navigate = useNavigate();
+  const { token } = useSession();
 
-  const navigate = useNavigate(); // Initialize navigate
+  // Decode token to get username and roomId
+  const decodedToken = jwtDecode(token);
+  const { username, roomId } = decodedToken;
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (newJournal.title && newJournal.content && newJournal.author) {
-      onSave(newJournal);
-      setNewJournal({ title: "", content: "", author: "", date: new Date() });
+    try {
+      const response = await fetch('http://localhost:5000/journal/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          username,
+          title: newJournal.title,
+          body: newJournal.content,
+          date: newJournal.date,
+          roomId,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+       // alert(data.message);
+        setNewJournal({ title: "", content: "", date: new Date() });
+        navigate(`/dashboard/${roomId}`);
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (err) {
+      console.error('Error saving journal entry:', err);
+      alert('An error occurred while saving the journal entry.');
     }
   };
 
   const handleEditorChange = (content) => {
-    setNewJournal({ ...newJournal, content });
+    const plainTextContent = content.replace(/<\/?[^>]+(>|$)/g, ""); // Remove all HTML tags
+  setNewJournal({ ...newJournal, content: plainTextContent });
+  
   };
 
   const handleDateChange = (date) => {
@@ -36,14 +68,11 @@ const AddJournal = ({ onSave }) => {
   };
 
   return (
-    <div
-      className="add-journal-fullscreen"
-      style={{ backgroundColor }}
-    >
-      <Sidebar/>
-      <div className="header-controls"  style={{ marginTop:'0px'}}>
+    <div className="add-journal-fullscreen" style={{ backgroundColor }}>
+      <Sidebar />
+      <div className="header-controls" style={{ marginTop: '0px' }}>
         <Button
-          onClick={() => navigate('/dashboard')} // Navigate back to the previous page
+          onClick={() => navigate('/dashboard')}
           style={{
             background: 'transparent',
             border: '1px solid #9427d8',

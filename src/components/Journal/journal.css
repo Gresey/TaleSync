@@ -248,3 +248,11 @@
     width: 100%;
   }
 }
+.modal-header {
+  background-color: #9427d8;
+  color: white;
+}
+
+.modal-footer {
+  justify-content: flex-end;
+}
