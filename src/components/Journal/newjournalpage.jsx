@@ -72,7 +72,7 @@ const AddJournal = () => {
       <Sidebar />
       <div className="header-controls" style={{ marginTop: '0px' }}>
         <Button
-          onClick={() => navigate('/dashboard')}
+          onClick={() => navigate(`/dashboard/${roomId}`)}
           style={{
             background: 'transparent',
             border: '1px solid #9427d8',

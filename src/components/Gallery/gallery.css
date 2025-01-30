@@ -77,3 +77,9 @@
 .btn-dashboard:hover, .btn-upload:hover {
   background-color: #b35bbd; /* Darker purple on hover */
 }
+.no-images-message {
+  font-size: 1.2em;
+  color: #555;
+  text-align: center;
+  margin-top: 20px;
+}

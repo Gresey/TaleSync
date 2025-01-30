@@ -74,7 +74,7 @@ const LoginForm = () => {
           <input
             type="text"
             id="roomId"
-            placeholder="Generated unique roomId"
+            placeholder="Enter or Generate Code"
             value={roomId} // Bind input value to the state
             onChange={(e) => setRoomId(e.target.value)}
           />
