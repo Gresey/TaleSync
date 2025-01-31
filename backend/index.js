@@ -5,6 +5,7 @@ const connectDB = require('./mongodb_connect.js');
 const userRoutes=require('./routes/userroutes.js');
 const journalRoutes=require('./routes/journalroutes.js');
 const galleryRoutes=require('./routes/galleryroutes.js');
+const goalroutes=require('./routes/goalroutes.js');
 
 require('dotenv').config();
 
@@ -23,6 +24,8 @@ app.use('/user',userRoutes);
 app.use('/journal',journalRoutes);
 
 app.use('/gallery',galleryRoutes);
+
+app.use('/goal',goalroutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

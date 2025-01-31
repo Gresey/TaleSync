@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Goal = require('../models/Goal');
-const authMiddleware = require('../middleware/auth'); // Middleware to verify JWT
+const Goal=require('../model/sharedgoal');
+const authMiddleware = require('../middleware/authenticate');
 
 // Get all goals for a specific room
 router.get('/:roomId', authMiddleware, async (req, res) => {
@@ -35,9 +35,16 @@ router.post('/add', authMiddleware, async (req, res) => {
 // Add user to an existing goal
 router.post('/:goalId/join', authMiddleware, async (req, res) => {
   try {
-    const { userId, name } = req.user;
-    const goal = await Goal.findById(req.params.goalId);
+    console.log("Goal ID:", req.params.goalId); // Debugging
+    console.log("User Data:", req.user);
 
+    const { userId, name } = req.user;
+    if (!userId || !name) {
+      return res.status(401).json({ message: "Unauthorized: Missing user data" });
+    }
+
+    // Find goal by `_id`
+    const goal = await Goal.findById(req.params.goalId);
     if (!goal) return res.status(404).json({ message: "Goal not found" });
 
     // Check if user is already in the goal
@@ -50,8 +57,11 @@ router.post('/:goalId/join', authMiddleware, async (req, res) => {
 
     res.json(goal);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error("Server Error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+
 
 module.exports = router;

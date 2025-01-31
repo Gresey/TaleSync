@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard/dashboard';
 import AddJournal from './components/Journal/newjournalpage';
 import ProtectedRoute from './ProtectedRoute';
 import Gallery from './components/Gallery/gallery';
+import SharedGoals from './components/Shared Goals/shared_goals';
 
 function App() {
 
@@ -31,9 +32,13 @@ function App() {
               <AddJournal/>
               </ProtectedRoute>
             }/> 
-        
+            <Route path='/dashboard/sharedgoals/:code' element={
+            <ProtectedRoute>
+              <SharedGoals/>
+            </ProtectedRoute>
           
-        </Routes>
+          }/>
+          </Routes>
       
       </div>
      
